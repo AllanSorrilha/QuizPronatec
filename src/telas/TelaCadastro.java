@@ -270,6 +270,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jButtonConcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciar.png"))); // NOI18N
 
         jButtonReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/reiniciar.png"))); // NOI18N
+        jButtonReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReiniciarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -370,7 +375,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         // TODO add your handling code here:
         
-         String questao = jTextAreaQuestao.getText();
+        String questao = jTextAreaQuestao.getText();
         String resposta0 = jTextField1.getText();
         String resposta1 = jTextField2.getText();
         String resposta2 = jTextField3.getText();
@@ -390,11 +395,50 @@ public class TelaCadastro extends javax.swing.JFrame {
             
         }else{
             
-            //metodo adicionar
+            Questao q = new Questao();
+            
+            q.setEnunciado(questao);
+            
+            List<String> respostas = new ArrayList<>();
+            
+            respostas.add(resposta0);
+            
+            respostas.add(resposta1);
+            
+            respostas.add(resposta2);
+            
+            respostas.add(resposta3);
+            
+            q.setRespostas(respostas);
+            
+            q.setRespostaCerta(indexCorreto);
+            
+            questoes.add(q);
+            
+            limparCampos();
+            
+            atualizarContador();
             
         }
         
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
+    private void jButtonReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReiniciarActionPerformed
+        // TODO add your handling code here:
+        
+        int r = JOptionPane.showConfirmDialog(null, "Deseja apagar todas as perguntas?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        
+        if (r == JOptionPane.YES_OPTION){
+        
+            questoes.clear();
+        
+            limparCampos();
+        
+            jLabelContador.setText("0");
+        
+        }
+        
+    }//GEN-LAST:event_jButtonReiniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -480,11 +524,20 @@ public class TelaCadastro extends javax.swing.JFrame {
     private int getRadioIndexCorreto() {
     
         if(jRadioButton1.isSelected()) return 0;
+        
         if(jRadioButton2.isSelected()) return 1;
+        
         if(jRadioButton3.isSelected()) return 2;
+        
         if(jRadioButton4.isSelected()) return 3;
     
         return -1;
+        
+    }
+    
+    private void atualizarContador(){
+        
+        jLabelContador.setText(questoes.size() + "");
         
     }
 
