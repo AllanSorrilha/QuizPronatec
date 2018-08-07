@@ -55,7 +55,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jButtonApagar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
-        jButtonConcluir = new javax.swing.JButton();
+        jButtonIniciar = new javax.swing.JButton();
         jButtonReiniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -267,7 +267,12 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        jButtonConcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciar.png"))); // NOI18N
+        jButtonIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciar.png"))); // NOI18N
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarActionPerformed(evt);
+            }
+        });
 
         jButtonReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/reiniciar.png"))); // NOI18N
         jButtonReiniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +291,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonConcluir)
+                .addComponent(jButtonIniciar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonReiniciar)
                 .addContainerGap())
@@ -298,7 +303,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonApagar)
                     .addComponent(jButtonAdicionar)
-                    .addComponent(jButtonConcluir)
+                    .addComponent(jButtonIniciar)
                     .addComponent(jButtonReiniciar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -440,6 +445,25 @@ public class TelaCadastro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonReiniciarActionPerformed
 
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
+        // TODO add your handling code here:
+        
+        if(questoes.size() != 0){
+            
+            TelaJogo tj = new TelaJogo(questoes);
+        
+            tj.setVisible(true);
+            
+            this.dispose();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Insira ao menos um registro!", "Erro!", JOptionPane.ERROR_MESSAGE);
+            
+        }       
+                
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,7 +504,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonApagar;
-    private javax.swing.JButton jButtonConcluir;
+    private javax.swing.JButton jButtonIniciar;
     private javax.swing.JButton jButtonReiniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
